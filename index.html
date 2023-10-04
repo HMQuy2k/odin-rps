@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice() {
+            // when invoke the fn will return Rock or Paper or Scissors
+            let choice = "";
+
+            //random number {1, 2, 3} generate
+            let rand = Math.floor(Math.random()*4);
+            
+            if (rand === 1) {
+                choice = "ROCK"
+            } else if (rand === 2) {
+                choice = "PAPER"
+            } else {
+                choice = "SCISSORS"
+            }
+            return choice;
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            // take in two string argument and format string with toUpperCase()
+            playerSelection = playerSelection.toUpperCase();
+
+            let res = "";
+            // compare the string and print the result
+
+            if (playerSelection == "ROCK") {
+                if (computerSelection == "PAPER") {
+                    res = "You lose! Computer chose PAPER";
+                } else if (computerSelection == "SCISSORS") {
+                    res = "You win! Computer chose SCISSORS";
+                } else {
+                    res = "Draw! Both chose ROCK";
+                }
+            } else if (playerSelection == "PAPER") {
+                if (computerSelection == "PAPER") {
+                    res = "Draw! Both chose PAPER";
+                } else if (computerSelection == "SCISSORS") {
+                    res = "You lose! Computer chose SCISSORS";
+                } else {
+                    res = "You win! Computer chose ROCK";
+                }
+            } else {  // player chose scissors
+                if (computerSelection == "PAPER") {
+                    res = "You win! Computer chose PAPER";
+                } else if (computerSelection == "SCISSORS") {
+                    res = "Draw! Both chose SCISSORS";
+                } else {
+                    res = "You lose! Computer chose ROCK";
+                }
+            }
+            return res;
+        }
+
+        function game() {
+            let playerScore, comScore, i;
+            let playerSelect, comSelect, text;
+
+            // Greet player
+            console.log("Rock, Paper, Scissor Game by Joe\n");
+            // play 5 round
+            for (i = 0; i < 5; i++) {
+                
+                console.log(`Round ${i}\n`);
+
+                // round select
+                playerSelect = prompt("Your choice: ");
+                comSelect = getComputerChoice();
+                
+                // round result
+                console.log(text = playRound(playerSelect, comSelect));
+
+                // Keep score;
+                if(text.search(/win!/i) !== - 1) {
+                    playerScore++;
+                } else if (text.search(/lose!/i) !== -1) {
+                    comScore++;
+                } else {
+                    playerScore++;
+                    comScore++;
+                }
+            }
+            if (playerScore > comScore) {
+                console.log("You win overall!!");
+            } else if (playerScore == comScore) {
+                console.log("Draw!")
+            } 
+            else {
+                console.log("You lose overall!!");
+            }
+        }
+    </script>
+</body>
+</html>
